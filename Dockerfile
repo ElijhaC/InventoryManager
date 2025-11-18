@@ -5,7 +5,7 @@ FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 
 # Copy everything into the container
-COPY . .
+COPY inventory/ .
 
 # Build the Spring Boot app (skip tests to speed up build)
 RUN mvn clean package -DskipTests
