@@ -27,15 +27,23 @@ export class IngredientListComponent implements OnInit {
     });
   }
 
-  searchQuery = '';
+  searchQuery: string = '';
 
-  searchIngredients() {
-    if (!this.searchQuery.trim()) {
-      this.loadIngredients();
-      return;
-    }
-    this.ingredientService.searchIngredients(this.searchQuery).subscribe(data => this.ingredients = data);
+searchIngredients(): void {
+  if (this.searchQuery.trim()) {
+    this.ingredientService.searchIngredients(this.searchQuery).subscribe(data => {
+      this.ingredients = data;
+    });
+  } else {
+    this.loadIngredients();
   }
+}
+
+clearSearch(): void {
+  this.searchQuery = '';
+  this.loadIngredients(); // reloads full list
+}
+
   
   generateReport() {
     this.ingredientService.generateReport().subscribe(report => {

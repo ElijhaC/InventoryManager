@@ -2,8 +2,38 @@
   <h2>🍽️ LuxeCuisine Inventory Manager</h2>
 
   <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Search ingredient..." [(ngModel)]="searchQuery">
-    <button class="btn btn-outline-secondary" (click)="searchIngredients()">Search</button>
+    <div class="search-container" style="position: relative; display: inline-block;">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Search ingredient..."
+    [(ngModel)]="searchQuery"
+    (input)="searchIngredients()"
+    style="padding-right: 30px;"
+  />
+
+  <!-- ❌ clear button -->
+  <button
+    *ngIf="searchQuery"
+    (click)="clearSearch()"
+    class="btn btn-sm"
+    style="
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      font-size: 16px;
+      color: #999;
+      cursor: pointer;
+    "
+    title="Clear search"
+  >
+    &times;
+  </button>
+</div>
+
     <button class="btn btn-outline-info" (click)="generateReport()">Generate Report</button>
   </div>
 
