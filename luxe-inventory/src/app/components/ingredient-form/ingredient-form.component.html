@@ -1,0 +1,96 @@
+<div class="card mt-4">
+  <div class="card-header">Add Ingredient</div>
+  <div class="card-body">
+    <form #form="ngForm" (ngSubmit)="addIngredient()" novalidate>
+
+      <div class="row mb-2">
+        <div class="col">
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            class="form-control"
+            required
+            [(ngModel)]="ingredient.name"
+            #name="ngModel"
+          />
+          <div *ngIf="name.invalid && name.touched" class="text-danger small">
+            Name is required.
+          </div>
+        </div>
+
+        <div class="col">
+          <label>Category</label>
+          <input
+            type="text"
+            name="category"
+            class="form-control"
+            required
+            [(ngModel)]="ingredient.category"
+            #category="ngModel"
+          />
+          <div *ngIf="category.invalid && category.touched" class="text-danger small">
+            Category is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col">
+          <label>Quantity</label>
+          <input
+            type="number"
+            name="quantity"
+            class="form-control"
+            required
+            min="0"
+            [(ngModel)]="ingredient.quantity"
+            #quantity="ngModel"
+          />
+          <div *ngIf="quantity.invalid && quantity.touched" class="text-danger small">
+            Quantity must be 0 or greater.
+          </div>
+        </div>
+
+        <div class="col">
+          <label>Unit</label>
+          <input
+            type="text"
+            name="unit"
+            class="form-control"
+            required
+            [(ngModel)]="ingredient.unit"
+            #unit="ngModel"
+          />
+          <div *ngIf="unit.invalid && unit.touched" class="text-danger small">
+            Unit is required.
+          </div>
+        </div>
+
+        <div class="col">
+          <label>Reorder Level</label>
+          <input
+            type="number"
+            name="reorderLevel"
+            class="form-control"
+            required
+            min="0"
+            [(ngModel)]="ingredient.reorderLevel"
+            #reorderLevel="ngModel"
+          />
+          <div *ngIf="reorderLevel.invalid && reorderLevel.touched" class="text-danger small">
+            Reorder level must be 0 or greater.
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="btn btn-primary mt-2"
+        type="submit"
+        [disabled]="form.invalid"
+      >
+        Add Ingredient
+      </button>
+    </form>
+  </div>
+</div>

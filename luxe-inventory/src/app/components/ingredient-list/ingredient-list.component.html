@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <h2>🍽️ LuxeCuisine Inventory Manager</h2>
+
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Search ingredient..." [(ngModel)]="searchQuery">
+    <button class="btn btn-outline-secondary" (click)="searchIngredients()">Search</button>
+    <button class="btn btn-outline-info" (click)="generateReport()">Generate Report</button>
+  </div>
+
+  <table class="table table-bordered mt-3" *ngIf="ingredients.length; else noData">
+    <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Unit</th>
+        <th>Reorder Level</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of ingredients" [ngClass]="{'table-warning': i.quantity <= i.reorderLevel}">
+        <td>{{ i.name }}</td>
+        <td>{{ i.category }}</td>
+        <td>{{ i.quantity }}</td>
+        <td>{{ i.unit }}</td>
+        <td>{{ i.reorderLevel }}</td>
+        <td><button class="btn btn-danger btn-sm" (click)="deleteIngredient(i.id!)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noData><p>No ingredients found.</p></ng-template>
+
+  <app-ingredient-form (refreshList)="loadIngredients()"></app-ingredient-form>
+</div>
