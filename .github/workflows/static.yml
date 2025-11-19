@@ -32,7 +32,7 @@ jobs:
 
       - name: Build Angular App
         working-directory: ./luxe-inventory
-        run: npm run build -- --configuration production
+        run: npx ng build --configuration production
 
       - name: Upload build output to GitHub Pages
         uses: actions/upload-pages-artifact@v3
