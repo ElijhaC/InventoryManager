@@ -30,9 +30,12 @@ jobs:
         working-directory: ./luxe-inventory
         run: npm install
 
+      - name: Install Angular CLI globally
+        run: npm install -g @angular/cli
+
       - name: Build Angular App
         working-directory: ./luxe-inventory
-        run: npx ng build --configuration production
+        run: ng build --configuration production
 
       - name: Upload build output to GitHub Pages
         uses: actions/upload-pages-artifact@v3
