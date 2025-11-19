@@ -27,15 +27,17 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
+        working-directory: ./luxe-inventory
         run: npm install
 
       - name: Build Angular App
+        working-directory: ./luxe-inventory
         run: npm run build -- --configuration production
 
       - name: Upload build output to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/luxe-inventory/browser
+          path: luxe-inventory/dist/luxe-inventory/browser
 
   deploy:
     environment:
